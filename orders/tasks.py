@@ -1,5 +1,6 @@
 from celery import shared_task
 from django.core.mail import send_mail
+from django.conf import settings
 from .models import Order
 
 @shared_task
@@ -12,7 +13,8 @@ def order_created(order_id):
     mail_sent = send_mail(
         subject,
         message,
-        'eshop@finesauces.store',
-        [order.email]
+        'gatquest@gmail.com',
+        [order.email],
+        fail_silently=False,
 )
     return mail_sent
